@@ -1,5 +1,6 @@
 # pycoustics
 Python module for acoustics related DSP
+Dependencies: [matplotlib](http://matplotlib.org), [NumPy](http://www.numpy.org)
 
 Empty for now! Stay tuned. 
 
