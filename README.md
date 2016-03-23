@@ -1,8 +1,9 @@
 # pycoustics
 Python module for acoustics related DSP
+
 Dependencies: [matplotlib](http://matplotlib.org), [NumPy](http://www.numpy.org)
 
-Empty for now! Stay tuned. 
+Not working yet! Stay tuned. 
 
 Expect:
 - calculation of reverb time, D50, C80, ...
