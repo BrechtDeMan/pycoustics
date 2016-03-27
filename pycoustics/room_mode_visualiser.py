@@ -1,5 +1,4 @@
 def calculate_modes(dimensions, maxfreq=2000):
-
     # to implement: arguments should be up to 3 dimensions in meters (check format and type)
     # extra: choose metres or feet
     # extra: temperature (influence on speed of sound)
@@ -15,9 +14,11 @@ def calculate_modes(dimensions, maxfreq=2000):
             frequencies[arg-1].append(root*multiplier)
             multiplier+=1 # to next harmonic
     
+    return frequencies
+
+def plot_room_modes(frequencies):
     # plot frequencies in red, blue and green, on logarithmic frequency axis
-    # extra: highlight region where near-coincidence occurs (show frequency)
-    
+    # TODO extra: highlight region where near-coincidence occurs (show frequency)
     fig = plt.figure()
     colormap = ['b', 'r', 'g']
     for arg in range(1,len(sys.argv)):
