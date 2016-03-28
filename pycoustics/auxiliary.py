@@ -10,3 +10,7 @@ def seconds2timestr(time_in_seconds):
 def test_monophonic(signal):
     signal = np.array(signal) # in case not np.array
     assert signal.ndim == 1, 'Not a one dimensional vector.'
+
+def isNaN(num):
+# check if number is NaN
+    return num != num
