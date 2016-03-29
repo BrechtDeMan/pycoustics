@@ -32,7 +32,29 @@ def third_octave_filter(x, fc, fs, order=2):
 
 def K_filter(signal, fs, debug=False):
     # apply K filtering as specified in EBU R-128 / ITU BS.1770-4
-
+    
+    # # coefficients given for 48 kHz
+    # b0 = 1.53512485958697
+    # b1 = -2.69169618940638
+    # b2 = 1.19839281085285
+    # a0 = 1.0
+    # a1 = -1.69065929318241
+    # a2 = 0.73248077421585
+    # # assumed: 
+    # V_L = 1.0 # low frequency gain = unity
+    # # calculated (assumed correct, as a1/a2 are exact):
+    # Q = 0.7071752369554193
+    # Omega = 0.11053183227049433
+    # f0 = 1681.9744509555319
+    # # from b1: 
+    # V_H = -b1/2 * (1+Omega/Q+Omega*Omega) + 1.0*Omega*Omega
+    # G = 20.0*np.log10(V_H)
+    # # from b0: 
+    # V_B = (b0*(1+Omega/Q+Omega*Omega) - V_H - 1.0*Omega*Omega)*Q/Omega
+    # exp_B = np.log(V_B) / np.log(V_H)
+    # # from b2 (just for checking):
+    # b2_check = (1.0*Omega*Omega - V_B*Omega/Q+V_H) / (1+Omega/Q+Omega*Omega)
+    
     # pre-filter 1
     f0 = 1681.9744509555319
     G  = 3.99984385397
