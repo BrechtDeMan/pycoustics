@@ -1,3 +1,13 @@
+def EDC(impulse_response, fs):
+    fs = float(fs) # make sure this is treated as a floating point number
+    impulse_response = np.array(impulse_response) # convert to np array if it isn't already
+    test_monophonic(impulse_response)
+    
+    # Schroeder's energy decay curve
+    cumul = 10.0*np.log10(np.sum(np.square(impulse_response)))
+    decay_curve = 10.0*np.log10(np.flipud(np.cumsum(np.flipud(np.square(impulse_response))))) - cumul
+    return decay_curve
+
 def C50(impulse_response, fs, delay=0):
     return clarity(.050, impulse_response, fs, delay)
 
