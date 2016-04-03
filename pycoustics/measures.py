@@ -7,6 +7,30 @@ def EDC(impulse_response, fs):
     cumul = 10.0*np.log10(np.sum(np.square(impulse_response)))
     decay_curve = 10.0*np.log10(np.flipud(np.cumsum(np.flipud(np.square(impulse_response))))) - cumul
     return decay_curve
+    
+def RT(decay_curve, fs, end_level, start_level=-5):
+    t_start = np.argmax(decay_curve<start_level)/fs # time at which EDC drops below -5dB or start_level
+    t_end   = np.argmax(decay_curve<end_level)/fs # time at which EDC drops below end_level
+    if t_5==0 or t_25==0: # argmax==0 when condition never satisfied
+        RT_d=RT_r=float('nan')
+    else: 
+        # decay method
+        RT_d = (t_end-t_start)*60/(end_level-start_level)
+        # regression method
+        s_start = np.ceil(t_start*fs).astype(int) # convert start time to integer sample number
+        s_end = np.ceil(t_end*fs).astype(int) # convert end time to integer sample number
+        p = np.polyfit(np.arange(s_start,s_end), decay_curve[np.arange(s_start,s_end)],1)
+        RT_r = -60/p[0]/fs
+    return (RT_d, RT_r, p)
+
+def RT20(decay_curve, fs):
+    return RT(decay_curve, fs, -25)
+    
+def RT30(decay_curve, fs):
+    return RT(decay_curve, fs, -35)
+    
+def EDT(decay_curve, fs):
+    return RT(decay_curve, fs, -10, 0)
 
 def C50(impulse_response, fs, delay=0):
     return clarity(.050, impulse_response, fs, delay)
