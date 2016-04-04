@@ -30,6 +30,18 @@ def third_octave_filter(x, fc, fs, order=2):
     y = butter_cascade(x, lower_freq, higher_freq, fs, order)
     return y
 
+def spectral_smoothing(signal, alpha): 
+    # takes time domain signal and applies complex smoothing in spectral domain
+    # simple: 
+    signal_spectrum = np.fft.rfft(signal)
+    nfft = len(signal_spectrum)
+    if alpha>0.0:
+        smoothing_window = np.hanning(alpha*nfft)
+        signal_spectrum = np.convolve(signal_spectrum, smoothing_window, mode='same')
+    # Maamar ICASSP (iterative): 
+    #TODO ...
+    return np.fft.irfft(signal_spectrum)
+
 def K_filter(signal, fs, debug=False):
     # apply K filtering as specified in EBU R-128 / ITU BS.1770-4
     
