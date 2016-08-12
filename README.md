@@ -1,10 +1,9 @@
 # pycoustics
+*WIMP - may not work yet!*
 
 Python module for acoustics related DSP
 
 Dependencies: [matplotlib](http://matplotlib.org), [NumPy](http://www.numpy.org)
-
-Not working yet! Stay tuned. 
 
 Also doesn't work like a coherent module yet - just separate functions for now. 
 
