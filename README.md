@@ -1,5 +1,5 @@
 # pycoustics
-*WIMP - may not work yet!*
+*WIP - may not work yet!*
 
 Python module for acoustics related DSP
 
